@@ -1,0 +1,359 @@
+"""here i am creating custom code snippet so whenever i create a python file python automatically insert %##
+its we are doing because i want to run code seperetly not whole script every time
+there are some shortcuts in  pycharm but it gives whole output of script
+Go to File → Settings → Editor → File and Code Templates
+Select Python Script
+Add this at the top of the template:
+#%%
+Click Apply → OK
+✔ Now every new Python file you create will automatically start with a #%% cell."""
+
+
+#%%
+print("python is fun!"); print("learning python is fun!"); print("python is fun!")
+
+#%%
+x = 10
+y = 20
+print(x + y)
+
+#%%
+print("This is another block")
+# First we we write our first program
+print("Hello, Word!")
+
+#Python Indentation(spaces at the begenning of writing code):uses indentation to use block code
+#the number of code is upto you as programmer ,the most common use is 4 but it has to be at least 1"""
+
+if 5> 2:
+    print("Five is greater than two!")
+if 5 > 2:
+         print("Five is greater than two!")
+# you have to use same number of spaces in the same block of code otherwise there will be error
+if 5 > 2:
+    print("Five is greater than two!")
+          print("Five is greater than two!")
+
+# STATEMENTS: means programming instructions
+#%%
+print("python is fun!") # python is fun is statement or our instructin
+print("learning python is fun!")
+print("python is easy to learn!") # python can contains many statement and it execeted one by one
+
+#SEMICOLON(OPTIONAL,RARELY USED)
+# pycharm supports cell execution using this symbol #%%
+
+%%
+print("python is fun!"); print("learning python is fun!"); print("python is fun!")
+
+#%%
+x = 10
+y = 20
+print(x + y)
+
+#%%
+print("This is another block")
+
+# %%
+#python  Variables: in python ,wariables are created when u assign value to it
+x=5
+y="Hi"
+
+#%%
+print("HI , world")
+print("python is fun!", end=" ")
+# the cursor stays on the same line, after this space in output
+
+#%%
+print("I am",35,"years old")
+#mix text and numbers
+
+#%%
+#CASTING: if you want to specify the data type of a variable  this can be done by casting
+
+x =str(3) #'3'
+y =int(3)
+z =float(3)
+print(x , y ,z)
+
+#%%
+x = 5
+y = "vedanti"
+print(type(x))
+print(type(y))
+# in this we can find data type of any variable here int and str
+
+#%%
+a = 4
+A = "salary"
+"variable names are case sensitive A will not overwrite a"
+
+#%%
+#multi word variable names: 3 techniques:1.camel case,2.pascalcase,3.snake case
+#Camel Case
+#Each word, except the first, starts with a capital letter:
+
+myVariableName = "John"
+#Pascal Case
+#Each word starts with a capital letter:
+MyVariableName = "John"
+#Snake Case
+#Each word is separated by an underscore character:
+my_variable_name = "John"
+
+#%%
+# assign multiple value  to variables
+x,y,z = 1, "orange", 3 #assign many values to  multiple variables at a time
+print(x)
+print(y)
+print(z)
+
+x=y=z = "orange" # assign one value to multiple variables
+print(x)
+print(y)
+print(z)
+
+#%%
+#UNPACK COLLECTION: if we have a collection values like list,tuple,etc
+#pythion allows you to extract collection values into variables called unpacking
+
+fruits = ["apple", "banana", "cherry"]
+x , y, z = fruits
+print(x)
+print(y)
+print(z)
+
+#%%
+#output function print()
+x ="python"
+y ="is"
+z ="Awesome"
+print(x,y,z)
+
+# we can also use + operator to output multiple variables
+x ="python " # here we use space after each variable
+y ="is "
+z ="Awesome "
+print(x+y+z) #output: python is Awsome if no space used then output:pythonisAwsome
+
+x=3
+y=6
+print(x+y) # + act as mathematical operator
+
+#%%
+#GLOBAL AND LOCAL VARIABLES
+#GLOBAL VARIABLES: the variables are created outside the function is called Global variables
+#it can be used both inside of function and outside
+x = "awesome"
+def my_function():
+    print("python is "+x)
+my_function()
+
+# if we create a variable with samae name and different value inside the function is considered as LOCAL variable
+# in this when we call function it will consider local functin
+x = "Awesome"
+def my_function():
+    x = "fantastic"
+    print("python is " + x)
+my_function()
+#output:python is fantastic
+
+#to create golobal variable inside the functin use global word
+
+x = "Awesome"
+def my_function():
+    global x
+    x = "fantastic"
+    print("python is " + x)
+my_function()
+
+def myfunc():
+  global x
+  x = "fantastic"
+myfunc()
+print("Python is " + x)
+
+#%%
+#DATATYPES
+#STRINGS: strings as array, find charecter at 1 position
+ a = "Hello, World!"
+ print(a[1]) #counting will start from 0 even comma and space also includes
+
+#looping through string
+for x in "Vedanti":
+    print(x) # in output letters will present vertically one by one
+
+#string length
+a = "Hello, World!"
+print(len(a)) #in output 13 will come spaces and comma includes
+
+#CHECK STRING
+#to check certain charecterv present in string or not use keyword 'in'
+
+a = "Vedanti is a good Girl "
+print("Vedanti" in a) # output:TRUE
+
+#USE IT IN "IF" statement
+if "Vedanti" in a: # in if statement words are case sensitive
+    print("yes,'Vedanti' is present")
+
+#check if not using 'NOT IN' keyword
+print("Vedashree" not in a)
+# use not in  if statement
+if "Vedashree" not in a:
+    print("NO")
+
+#%%Slicing strings:
+#specify start index(index means number starts from 0-.. for string) and end index seperated by colon to return part of string
+
+#return range of charecters using slice syntax(remember to count from 0)
+a = "Vedanti is a good Girl"
+print(a[2:5]) #dan it includes 2nd index but not 5th if want  2 to 4 index then = [2:5] its easy way to remember
+print(a[-6:-2]) # d Gi same as[6:2] only it reads from back but includes
+
+#slice from the start
+print(a[:9]) #vedanti i prints means 9th index not includes
+print(a[:-9])
+
+#slice to the end
+print(a[2:]) # 2nd index include(o/p:danti is a good Girl )
+print(a[-2:])
+
+#NEGATIVE INDEXING: use to start slice from the end index
+#ex: get the charecter 'o' from "world" = [-5]
+
+print(a[-6:-2]) # same as[6:2] only it reads from back but includes 6th index and not 2nd
+
+#%%
+#MODIFY STRINGS: python has some built in methods we can use on string
+
+a = " Vedashree is a good Girl "
+
+#UPPERCASE(). : METHOD RETURNS THE STRING IN UPPERCASE
+print(a.upper()) # o/p:VEDASHREE IS A GOOD GIRL
+print(a.lower()) # vedashree is a good girl
+
+# REMOVE WHITE SPACES
+# strip() remove any white spaces at the begenning or at the end
+print(a.strip()) # removes space only at the beggening at at the end of string inside " "
+print(a.rstrip()) # removes space from right side of string not inside the string sentence means not space between words
+print(a.lstrip()) # removes space from leftside
+
+#REPLACE(): REPLACE STRING WITH ANOTHER STRING
+print(a.replace('G','O'))
+print(a.replace('girl','boy'))
+print(a.replace(' ','a'))
+
+#SPLIT: Returns a list where text between seperator(,) becomes list items
+print(a.split()) #['Vedashree', 'is', 'a', 'good', 'Girl']
+print(a.split(",")) # [' Vedashree is a good Girl ']
+
+#OTHER METHODS
+a="i like to go to the school, Anshuta is my best friend"
+print(a.capitalize())
+print(a.casefold())
+print(a.center())
+print(a.count())
+print(a.encode())
+print(a.endswith()
+print(a.expandtabs())
+print(a.find())
+print(a.format())
+print(a.format_map())
+print(a.index())
+print(a.isalnum())
+print(a.isalpha())
+print(a.isnumeric())
+print(a.isdigit())
+print(a.islower())
+print(a.isspace())
+print(a.istitle())
+print(a.isupper())
+print(a.isprintable())
+print(a.title())
+print(a.swapcase())
+print(a.join())
+print(a.ljust())
+print(a.rjust())
+print(a.rfind())
+print(a.rsplit())
+print(a.splitlines())
+print(a.replace(" ",""))
+print(a.startswith("i"))
+print(a.endswith("i"))
+print(a.swapcase())
+print(a.title())
+print(a.zfill())
+
+
+#%%
+#STRING CONCATENATION: (COMBINE TWO STRINGS USING  + OPERATOR)
+a = "vedanti"
+b = "vedashree"
+c = a + b
+print(c) #vedantivedashree use space in string then it will use space
+print(a+b) #vedantivedashree
+
+# to add space between them use space in first string or " "
+print(a +' '+ b)
+
+#%%
+# to combine string and number we can use  format() method or f string its introduce in python 3.6
+age = 9
+txt = f"my name is vedanti, i am {age}"
+print(txt)
+
+#placeholder{ } it can contains:variables,functions nd operators
+char = "smart"
+txt = f"my name is vedanti, i am {char} girl"
+print(txt)
+
+# display value with two decimals
+price = 59
+txt = f"the price is {price:2f} dollors"
+print(txt)
+
+# math oprtations in placeholder
+txt = f"the price is {20 * 40} dollors" # use space is and spaceholder
+print(txt) #the price is 800 dollors if space not used: the price is800 dollors
+
+#%%
+#ESCAPE CHARECTER: for next line \n , \"vedanti\" for adding double quoted string inside " " string
+txt = "hello, \"world\"" # o/p: hello, "world"
+txt = "hello, \\world" # hello, \world
+txt = "hello, \nworld" #hello,  world in next or new line
+txt = "hello, \rworld"
+print(txt)
+
+#%%
+print(10 > 9)
+print(10 == 9)
+print(10 < 9)
+
+a = 200
+b = 50
+if b > a:
+    print("b is greater than a")
+else:
+    print("b is not greater than a")
+
+#%%
+print(bool("Hello")) # caps 'p for print will show error'
+print(bool(15))
+
+x = "Hello"
+y = 15
+
+print(bool(x))
+print(bool(y))
+
+
+
+
+
+
+
+
+
+
+
