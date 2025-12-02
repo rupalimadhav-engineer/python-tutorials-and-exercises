@@ -347,6 +347,225 @@ y = 15
 print(bool(x))
 print(bool(y))
 
+# in boolean most values are tre except :
+# 1. any number is TRUE except 0
+# 2. any set list,tuple and dict is True except empty one
+
+#TRUE
+a=bool("abc")
+b=bool(123)
+c=bool(["apple", "cherry", "banana"])
+print(a,b,c)
+#FALSE
+d=bool(False)
+e=bool(None)
+f=bool(0)
+g=bool("") # if we use space in string then it will be true(" ")
+h=bool([ ])
+i=bool(( ))
+j=bool({ })
+print(d,e,f,g,h,i,j)
+
+#%%
+# the ob ject that is made from class with a _len_  function that returns o or falseclass myclass():
+
+class myclass():
+  def __len__(self):
+    return 0
+
+myobj = myclass()
+print(bool(myobj))
+
+#%%
+# casn create functin that returns boolean value
+def myfunction():
+  return True
+print (myfunction())
+
+#%%
+#print YES if functin returns True otherwise None
+def myfunctin():
+    return True# True & False always start with caps otherwise shows error
+if myfunction():
+  print("yes")
+else:
+  print("no")
+##################################################################
+
+#PYTHON OPERATORS
+'''
+1.ARITHMATIC OPERATORS : +,-,*,%,/,**:exponentiation(x**y),//:floor division(x//y)
+2.ASSIGNMENT OPERATORS : use to assign values(==,+=,-=,*=,/=,%=,//=,**=,&=,\=,:=)
+3.COMPARISION OPERATORS: compare two values(==,!=,>,<,>=,<=)
+4.DIVISION OPERATORS:
+5.LOGICAL OPERATORS: and , or, not
+6.IDENTITY OPERATORS: is, is not(Identity starts from I: is also start from i just Hint to remember)
+7.MEMBERSHIP OPERATORS:in , not in(Hint: if we have to become member first we need to become one IN them)
+8.BITWISE OPERATORS:(& -AND,| -OR, ^ - XOR, ~ - NOT, << -ZERO FILL LEFT SHIFT,>> -SIGNED RIGHT SHIFT
+9.MODULE OPERATORS : % ex: print(a % b)
+'''
+
+#%%
+#1.Aruthmatric operators
+x=15
+y=4
+
+print(x+y) :19
+print(x-y) :11
+print(x*y) :60
+print(x/y) :3.75
+print(x//y):3
+print(x%y) :3
+print(x**y):50625(15**4:15*15*15*15)
+
+#%%
+#2.ASSIGNMENT OPERATORS:
+'''
+Python 3.8 introduced the := operator, known as the "walrus operator". It assigns values to variables as part of 
+a larger expression:
+# 📝 **Short Notes: Walrus Operator (:=) vs Assignment (=) — Interview Answer**
+### **1. What is the Walrus Operator?**
+The **walrus operator (`:=`)** in Python 3.8+ allows **assignment inside expressions**.
+It lets you assign a value *and* use it immediately within the same line.
+---
+# 🆚 **Difference Between `:=` and `=`**
+
+| Feature              | `=` (Assignment Operator)    | `:=` (Walrus Operator)                        |
+| -------------------- | ---------------------------- | --------------------------------------------- |
+| Purpose              | Assigns value to variable    | Assigns value **within** an expression        |
+| Where it can be used | Only as a separate statement | Inside conditions, loops, list comprehensions |
+| Expression allowed?  | ❌ No                         | ✔️ Yes                                        |
+| Introduced in        | Old versions                 | Python 3.8+ 
+                                  
+# 🧠 **Simple Explanation**
+* `=` assigns a value normally:
+  x = 5
+
+* `:=` assigns a value while evaluating a condition or expression:
+'''
+
+#%%
+if (x := 5) > 3:
+  print(x)
+
+'''# 🟢 **Example 1: IF Condition**
+
+### Without Walrus:
+n = len(items)
+if n > 3:
+  print(n)
+    
+### With Walrus:
+if (n := len(items)) > 3:
+    print(n)
+'''
+''''**Benefit:** `len(items)` is called once and code becomes shorter.
+**Benefit:** Cleaner loop, no repeated input call.
+**Benefit:** Cleaner, more Pythonic
+---
+# 🎯 **When to Use Walrus Operator**
+
+* When you want **less repetition**
+* When you want **cleaner loops or conditions**
+* When calculating a value only once is more efficient
+---
+# 🎯 **When NOT to Use**
+* When it reduces readability
+* For very simple assignments (not inside expressions)
+# ⭐ **One-line Interview Definition**
+> “The walrus operator (`:=`) allows assignment inside expressions. It is used to assign and use a value in the same line, 
+especially in conditions and loops, making the code shorter and more efficient.'''
+
+# %%
+#3.COMPARISION  OPERATOR
+
+x = 5
+y = 3
+
+print(x == y) # False
+print(x != y)
+print(x > y)
+print(x < y)
+print(x >= y)
+print(x <= y)
+
+#%%
+#Chaining comparitor oprtator:allows you to chain comparitor operator
+
+x = 5
+
+print(1 < x < 10) # True
+print(1 < x and x < 10) # True
+
+#%%
+# 3.PYTHON LOGICAL OPERATORS
+#AND: RETURNS TRUE IF BOTH STATEMENTS TRUE
+#test if number is greater than zero and less than 10
+x = 5
+print(x > 0 and x <10) #True, and and or should be lowercase
+
+#OR : returns true if one of the statement is true
+#test if number is less than 5 or greater than 10
+
+x = 5
+print(x < 5 or x > 10) #False
+
+#not: Reverse the result with not
+x = 5
+print(not(x > 3 and x < 10))
+
+#%%
+#4.IDENTITY OPERATORS: is ,is not: used to compare the objects, not if they are equal
+# is: returns true if both variables are the same object,
+# is not: returns true if both variables are not the same object
+#here is , is not  doesn't check values it checks memory location i.e objects in memory location
+
+x =["apple","banana"] # it stores at memory A
+y =["apple","banana"] # it stores at memory B
+z = x                 # it stores at memory A as z=x
+print(x is y) #False
+print(x is z) #True: memory locations are same
+print(x==y)   #True : (== : checks value)
+print(x is not y)
+
+#%%
+#MEMBERSHIP OPERATORS: in , not in
+#in : returns true if sequence with specified value is present in the object
+#not in: returns true if sequence with specified value is not present in the object
+x =["apple","banana"]
+print("banana" in x) # T
+print("pineapple" in x) # F
+print("pineapple" not in x) #T
+
+text = "Hello World"
+
+print("H" in text) # T
+print("hello" in text) # F
+print("z" not in text) # T
+
+#Operator Precedence (KANCHBHAGUBEV: In MARATHI MATHS) , parentheses has highest precedence
+print(100 + 5 * 3)
+print((6 + 3) - (6 + 3))
+
+#%%
+#LIST: list are used to stora multiple items in single variable
+# it's one of 4-built in data types in python used to store collection of data
+# 4
+# -built in/collection datatypes: LIST,TUPLE,SET,DICTIONARY
+#defination:list items are odered,changable, and allow duplicate values
+'''
+There are four collection data types in the Python programming language:
+
+List: is a collection which is ordered and changeable. Allows duplicate members.
+Tuple:is a collection which is ordered and unchangeable. Allows duplicate members.
+Set: is a collection which is unordered, unchangeable*, and unindexed. No duplicate members.
+Dictionary:  is a collection which is ordered and changeable. No duplicate members.
+*Set items are unchangeable, but you can remove and/or add items whenever you like.
+**As of Python version 3.7, dictionaries are ordered. In Python 3.6 and earlier, dictionaries are unordered.
+'''
+list1 =["apple",1,2.3,("hi"),{"vedanti"}] # o/p:['apple', 1, 2.3, 'hi', {'vedanti'}]
+list = ["apple",1,2.3,("hi",2),{"vedanti"}] # o/p:['apple', 1, 2.3, ('hi', 2), {'vedanti'}]
+print(list1)
 
 
 
