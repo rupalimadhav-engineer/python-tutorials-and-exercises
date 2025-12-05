@@ -567,6 +567,959 @@ list1 =["apple",1,2.3,("hi"),{"vedanti"}] # o/p:['apple', 1, 2.3, 'hi', {'vedant
 list = ["apple",1,2.3,("hi",2),{"vedanti"}] # o/p:['apple', 1, 2.3, ('hi', 2), {'vedanti'}]
 print(list1)
 
+#%%
+#LIST METHODS
+# access list items : items are indexed we can access by referring to the index number
+list = ["apple","banana","cherry"]
+print(list[0]) # o/p: apple
+print(list[-1])#cherry (in negative indexing no 0 index direct starts from -1)
+
+#slicing of list or range of indexes (same rule everyewhere [x:y] value before : included and value after : excluded)
+list1 = ["apple", "banana", "cherry", "orange", "kiwi", "melon", "mango"]
+print(list1[2:5]) #['cherry', 'orange', 'kiwi']
+print(list1[2:]) #['cherry', 'orange', 'kiwi', 'melon', 'mango']
+print(list1[:2]) #['apple', 'banana']
+print(list1[-4:-1])#['orange', 'kiwi', 'melon']
+
+# check if item exists
+ list2  = ["apple", "banana", "cherry"]
+ if "apple" in list2:
+     print("yes, 'apple' is present" )
+
+#%%
+#change list items
+
+list3 = ["apple", "banana", "cherry"]
+list3[1]="grape"
+print(list3) #['apple', 'grape', 'cherry']
+
+#change range of item values
+
+list3 = ["apple", "banana", "cherry"]
+#list3[1:2] = ["grape"] #o/p :['apple', 'grape', 'cherry']
+#list3[0:1] =["grape"] # ['grape', 'banana', 'cherry']
+#list3[0:1] = ["grape","kiwi","melon"] #['grape', 'kiwi', 'melon', 'banana', 'cherry'] if we add extra items then order will change
+
+#change the second value(not index remember) by replacing two new values
+#list3[1:2]=["kiwi","melon"] #['apple', 'kiwi', 'melon', 'cherry']
+#list3[2] =["kivi","melon"] # ['apple', 'banana', ['kivi', 'melon']]
+#list3[0:3] ="kiwi" #['k', 'i', 'w', 'i']
+#[0:3] =["kiwi"] #['kiwi']
+#list3[0:4] # no output
+#list3[0:2] ="kiwi"  #['k', 'i', 'w', 'i', 'cherry']
+list3[0:2] =["kiwi"] #['kiwi', 'cherry']
+print(list3) #
+#Note: The length of the list will change when the number of items inserted does not match the number of items replaced.
+
+#%%
+#INSERT ITEMS: to insert new item without replacing any existing values and at specified index this method can use
+#list4 = ["apple", "banana", "cherry"]
+#list4.insert(2,"orange") # ['apple', 'banana', 'orange', 'cherry']  2: at second index
+
+#APPEND ITESMS: to add item to the end of the list
+#list4.append("grape") #['apple', 'banana', 'cherry', 'grape']
+#list4.append(["kiwi","melon"]) # ['apple', 'banana', 'cherry', ['kiwi', 'melon']] it will take exactly 1 argument
+
+#EXTEND LIST: to append elements from another list to current list
+list4 = ["apple", "banana", "cherry"]
+#list5 = ["kiwi", "melon", "grapes"]
+list6 = ("kiwi", "melon", "grapes") #tuple
+#list4.extend(list5) #['apple', 'banana', 'cherry', 'kiwi', 'melon', 'grapes']
+
+#ADD ANY ITERABLE:WE CAN ADD TUPLE,SET,DICT etc, any iterable objects
+#list4.extend(list6) #['apple', 'banana', 'cherry', 'kiwi', 'melon', 'grapes']
+#print(list4)
+
+#%%
+#REMOVE LIST ITEMS:remove() method removes items
+listA = ["apple", "banana", "cherry","banana"]
+#listA.remove("apple") #['banana', 'cherry'] all method names should be in lowercase
+
+#if there are duplicate values or items it will remove 1st one
+#listA.remove("banana")  #['apple', 'cherry', 'banana']
+
+#Remove specified index pop() method
+#listA.pop(1) #['apple', 'cherry', 'banana'] :removes first index item no need [] for index
+
+#if we do not specify index pop method removes last item
+#listA.pop() #['apple', 'banana', 'cherry']
+
+#the del keyword also removes specified index
+#del listA[0] # syntax is different even [] needs to use for mentioned index
+            #['banana', 'cherry', 'banana']
+#print(listA)
+
+#del keyword can delete list completely
+listb=["kiwi",1,2,4]
+#del listb # o/p  no result
+
+#CLEAR METHOD: empties the list,list still remains but it has no content
+
+listb.clear() # o/p: []
+print(listb)
+
+#%%
+#PYTHON LOOP LISTS
+#WE CAN LOOP THROUGH LIST : print all items in list one by one
+#list = ["apple", "banana", "cherry"]
+#for x in list: # x is the loop variable, it takes 1 element from the list at time during esch iteration
+#    print(x) # it will print list items one by one
+
+#loop through the index numbers use range() and len()
+#list = ["apple", "banana", "cherry"]
+#for i in range(len(list)): # o/p:apple banana cherry one by one
+#    print(list[i]) # i should be in [] as it is index
+'''
+Here, i represents the index of the list.
+We use range(len(list)) to loop through each index, and then use list[i] to access the item at that index.
+💡 When do we use this method?
+We use for i in range(len(list)): when we need:
+✔ index number
+✔ index-based operations
+✔ modifying list values by index
+'''
+#%%
+#USING WHILE LOOP:
+list =["apple","banana","cherry"] #o/p: one by one apple banana cherry
+i = 0 #starts with index 0
+while i < (len(list)): #loop will continue as long as i is less than len(list):0<3
+    print(list[i]) #list consists of names and i consists of index number
+    i=i+1 # to increase i by 1 after each loop(0-1-2-3) ,when i becomes 3 ,condition i<3 becomes false and loop stops
+
+#%%
+#LOOPING USING LIST COMPREHENSION
+
+list = ["apple", "banana", "cherry"]
+[print(x) for x in list]
+
+#%%
+# LIST COMPPREHENSION: IT offers shorter syntax when u want to create new list based on the values of existing list
+# eg; based on fruits list if we want name of fruits with letter "a" in the name
+fruits = ["apple", "banana", "cherry"]
+#%%
+# with list compression we can do it in only one line(always use [] to write code in list compherension)
+fruits = ["apple", "banana", "cherry"]
+newlistA= [x for x in fruits if "a" in x]
+print(newlistA) #['apple', 'banana']
+
+#SYNTAX FOR LIST COMPHERENSION:(expression:x, item:x,iterable:fruits,condition:"a" in x)
+#newlist = [expression for item in iterable if condition == True)
+newlist1= [x for x in fruits if x != "apple"]# only accept items that are not "apple"
+print(newlist1) #['banana', 'cherry']
+
+#ITERABLE: ITERABLE CAN BE ANY OBJECT LIKE LIST, TUPLE ,SET
+#WE CAN USE RANGE() FUNCTION TO CREATE ITERABLE
+
+list =[x for x in range(10)]
+print(list) #[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+list1 =[x for x in range(10) if x<5] #same ex like above only condition applied
+print(list1) #[0, 1, 2, 3, 4]
+
+#The expression is the current item in the iteration, but it is also the outcome, which you can manipulate before it ends up like a list item in the new list:
+#set the values in thw new list to uppercase
+newlist2= [x.upper() for x in fruits]
+print(newlist2) #['APPLE', 'BANANA', 'CHERRY']
+
+#set all values in newlist to "hellow"
+
+newlistB =['HELLO' for x in fruits]
+print(newlistB) #['HELLO', 'HELLO', 'HELLO']
+
+#The expression can also contain conditions, not like a filter, but as a way to manipulate the outcome:
+
+nwelisiC = [ x if x != "banana" else "orange" for x in fruits] #['apple', 'orange', 'cherry']
+print(nwelisiC) #"Return the item if it is not banana, if it is banana return orange".
+
+# without lisi comprehension same output as 1st example
+
+fruits = ["apple", "banana", "cherry", "kiwi", "mango"]
+newlist = []
+
+for x in fruits:
+  if "a" in x:
+    newlist.append(x)
+
+print(newlist)
+#%%
+#SORT LIST:Sort list alphanumerically ascending by default
+
+list = ["apple", "banana", "cherry", "kiwi", "mango"]
+list.sort() #['apple', 'banana', 'cherry', 'kiwi', 'mango']
+print(list)
+
+list1 = [1,8,3,5,2,6,4,9.7,4.5]
+list1.sort() #[1, 2, 3, 4, 4.5, 5, 6, 8, 9.7] ,in ascending order by default
+print(list1)
+
+#SORT DESCENDING
+list.sort(reverse=True)  #['mango', 'kiwi', 'cherry', 'banana', 'apple']
+list1.sort(reverse = True) #[9.7, 8, 6, 5, 4.5, 4, 3, 2, 1]
+print(list1)
+print(list)
+
+# CASE SENSITIVE SORT : can give unexpected result
+thislist = ["banana", "Orange", "Kiwi", "cherry"]
+thislist.sort() #['Kiwi', 'Orange', 'banana', 'cherry']
+print(thislist)
+
+# luckily we can use built in key function when sorting list,
+#SO IF U WANT CASE INSANSITIVE SORT FUNCTION ,USE str.lower as a key function
+
+thislist1 =["banana", "Orange", "Kiwi", "cherry"]
+thislist1.sort(key = str.lower) #['banana', 'cherry', 'Kiwi', 'Orange']
+print(thislist1)
+
+# REVERSE ORDER: if want to reverse order of list , regardless of the alphabet
+thislist2 =["banana", "Orange", "Kiwi", "cherry"]
+thislist2.reverse() #['cherry', 'Kiwi', 'Orange', 'banana']
+print(thislist2)
+
+#%%
+#COPY A LIST:
+
+list = ["apple", "banana", "cherry", "kiwi", "mango"]
+newlist =list.copy() #['apple', 'banana', 'cherry', 'kiwi', 'mango']
+print(newlist)
+'''
+thislist = ["apple", "banana", "cherry"]
+mylist = list(thislist)
+print(mylist)'''
+
+#SLICE METHOD: we can also use slice method to make a copy of list
+
+list1 =["apple", "banana", "cherry", "kiwi", "mango"]
+newlist1 = list1[:] #['apple', 'banana', 'cherry', 'kiwi', 'mango']
+print(newlist1)
+#%%
+#JOIN LISTS:
+# one of the easiest ways are by using the + operator
+
+list1 = ["apple", "banana", "cherry", "kiwi", "mango"]
+list2 = [1,2,3,4,5,6]
+list3 = list1 + list2
+print(list3) #['apple', 'banana', 'cherry', 'kiwi', 'mango', 1, 2, 3, 4, 5, 6]
+
+# another way to join two lists is by appending all the items from list 2 to list1
+
+for x in list2:
+  list1.append(x)
+print(list1) #['apple', 'banana', 'cherry', 'kiwi', 'mango', 1, 2, 3, 4, 5, 6]
+
+# extend() method to add list2 at the end of list1
+list1.extend(list2)
+print(list1) #['apple', 'banana', 'cherry', 'kiwi', 'mango', 1, 2, 3, 4, 5, 6]
+
+#%%
+#Tuple:used to store multiple items in a single variable,it's ordered, UNCHANGABLE, allows duplicate
+tuple = ("apple", "banana", "cherry", "kiwi", "mango")
+print(tuple) #('apple', 'banana', 'cherry', 'kiwi', 'mango')
+#Unchangable: means we cannot add ,remove or change items after the tuple has been created
+print(len(tuple)) # 5
+tuple1= ("apple",) # to create tuple with 1 item u have to add comma after the item
+print(tuple1)#('apple',)
+
+tuple3 =("apple","banana",1,23,4,True,False)  #('apple', 'banana', 1, 23, 4, True, False)
+print(tuple3)
+print(type(tuple3)) #<class 'tuple'>
+tupleA = (("apple", "banana", "cherry", "kiwi", "mango"))
+print(tupleA) #tuple counstructor: ('apple', 'banana', 'cherry', 'kiwi', 'mango')
+
+#%%
+#access tuple: we can access tuple using index number same as list
+tuple=(("apple", "banana", "cherry", "kiwi", "mango"))
+print(tuple[1]) #banana
+print(tuple[ 2:4]) #('cherry', 'kiwi')
+print(tuple[:3]) #('apple', 'banana', 'cherry')
+print(tuple[3:]) #('kiwi', 'mango')
+print(tuple[:]) #('apple', 'banana', 'cherry', 'kiwi', 'mango')
+print(tuple[-1])#mango
+print(tuple[-2:-4]) #()
+print(tuple[-2:]) #('kiwi', 'mango')
+print(tuple[:-2]) #('apple', 'banana', 'cherry')
+
+#%%
+#UPDATE TUPLES: tuple is unchangable that means we can't add remove or change items once the tuple is created
+#change tuple values: we can't directly change but we can convert tuple into list then change value, add or remove# and again convert into tuple
+#and again convrt it into tuple this way we can change add remove items
+#in this way all methods used in list we can apply for tuple also
+del tuple
+x = ("apple", "banana", "cherry", "kiwi", "mango")
+y = list(x) #['appl  , 'banana', 'cherry', 'kiwi', 'mango']
+print(y)
+y[1] = "melon" #['apple', 'melon', 'cherry', 'kiwi', 'mango']
+print(y)
+x = tuple(y) #('apple', 'melon', 'cherry', 'kiwi', 'mango')
+print(x)
+#%%
+# ADD ITEMS:
+thistuple = ("apple", "banana", "cherry")
+y = list(thistuple)
+y.append("orange")
+thistuple = tuple(y)
+print(thistuple) #('apple', 'banana', 'cherry', 'orange')
+
+#create a new tuple with vlaue "orange" and add that tuple
+thistuple1= ("apple", "banana", "cherry")
+y = ("orange",)
+x = thistuple1 + y
+print(x) # ('apple', 'banana', 'cherry', 'orange')
+
+#REMOVE ITEMS:
+thistuple2= ("apple", "banana", "cherry")
+y = list(thistuple2)
+y.remove("apple")
+thistuple2= tuple(y)
+print(thistuple2) #('banana', 'cherry')
+
+#DELETE TUPLE:
+thistuple3= ("apple", "banana", "cherry")
+del thistuple3
+print(thistuple3) # shows error as tuple deleted
+
+#%%
+#UNPACKING A TUPLE: we allowed to extract the values back into variables is called unpacking
+#PACKING: when we create a tuple we normally assigns value to it is called "packing" a tuple
+'''
+fruits = ["apple", "banana", "cherry", "kiwi", "mango"]
+(green, yellow, red,brown,orange) = fruits
+print(green)
+print(yellow)
+print(red)
+print(brown)
+print(orange) #applre banana cherry kiwi mango one by one'''
+'''
+fruits1= ["apple", "banana", "cherry", "kiwi", "mango"]
+(green, yellow, red,brown,yellow) = fruits1
+print(green)
+print(yellow)
+print(red)
+print(brown)
+print(yellow) # apple mango cherry kiwi mango (dont know why banana not added to 1 yellow color)
+#yellow = "banana"  → replaced by → yellow = "mango" , it will overwrite the first value, so you lose "banana".
+print(red)
+print(brown)'''
+
+#%%
+#USING ASTERISK* :
+#if the number of varibles less than the number of values u can add an * to the variable name and value will be assigned to the variable
+fruits = ("apple", "banana", "cherry", "strawberry", "raspberry")
+
+(green , yellow , *red)= fruits
+
+print(green)
+print(yellow)
+print(red) # apple banana ['cherry', 'strawberry', 'raspberry'] one by one
+
+#%%
+# if asterisk added to middle variable instead last one then
+fruits = ("apple", "mango", "papaya", "pineapple", "cherry")
+
+(green, *tropic, red) = fruits
+
+print(green)
+print(tropic)
+print(red) # apple ['mango', 'papaya', 'pineapple'] cherry one by one
+
+#%%
+#LOOPS THROUGH TUPLES
+tuple = ("apple", "banana", "cherry")
+for x in tuple:
+print(x) # apple banana cherry one by one
+
+tuple1 = ("apple", "banana", "cherry")
+for i in range(len(tuple1)):
+print(tuple1[i])
+#%%
+tuple3= ("apple", "banana", "cherry")
+i=0
+while i < len(tuple3):
+print(tuple3[i])
+i=i+1
+
+#%%
+#JOIN TUPLES :
+tuple1 = ("a", "b" , "c")
+tuple2 = (1, 2, 3)
+
+tuple3 = tuple1 + tuple2
+print(tuple3) #('a', 'b', 'c', 1, 2, 3)
+# MULTIPY TUPLES
+fruits = ("apple", "banana", "cherry")
+mytuple = fruits * 2
+
+print(mytuple) #('apple', 'banana', 'cherry', 'apple', 'banana', 'cherry')
+
+#%%
+#COUNT:
+fruits = ("apple", "banana", "cherry", "apple", "mango", "apple")
+print(fruits.count("apple")) #3
+
+#INDEX;
+fruits = ("apple", "banana", "cherry", "apple", "mango")
+print(fruits.index("cherry")) #2
+
+#%% A set is a collection which is unordered, unchangeable*, and unindexed.
+#SET:* Note: Set items are unchangeable, but you can remove items and add new items.
+myset = {"apple", "banana", "cherry"}
+print(myset)  #{'cherry', 'apple', 'banana'}
+#Note: Sets are unordered, so you cannot be sure in which order the items will appear.
+#Once a set is created, you cannot change its items, but you can remove items and add new items.
+#Set items can appear in a different order every time you use them, and cannot be referred to by index or key.
+
+thisset = {"apple", "banana", "cherry", "apple"}
+print(thisset) #{'cherry', 'apple', 'banana'} ,duplicates will be ignored
+
+# TRUE AND 1 IS CONSIDERED SAME VALUE
+thisset1={"apple", "banana", "cherry", True, 1, 2}
+print(thisset1)#{True, 2, 'cherry', 'apple', 'banana'}
+
+#False AND 0 CONSIDERED AS SAME VALUE
+thisset2= {"apple", "banana", "cherry", False, True, 0}
+print(thisset2) #{False, True, 'cherry', 'apple', 'banana'}
+print(len(thisset2)) #5
+print(type(thisset2)) #<class 'set'>
+#%%
+#ACCESS ITEMS:
+# u cnn't access items in set by index, but can loop through set# t
+set = {"apple", "banana", "cherry"}
+for x in set:
+print(x) #cherry apple banana one by one
+
+#check if banana is present or not
+print("banana" in set) # True
+print("banana" not in set) #False
+
+#CHANGE ITEMS: ONCE A SET IS CREATED , YOU CAN NOT CHANGE ITS ITEMS BUT U CAN ADD NEW ITEMS
+#TO add one item in set use the add() method
+
+set1 = {"apple", "banana", "cherry"}
+set1.add("kiwi")
+print(set1) #{'cherry', 'kiwi', 'apple', 'banana'}
+#%%
+#ADD SET: to add items from another set to current set use , update() method
+set2 = {"apple", "banana", "cherry"}
+set3 = {"kiwi",1,2}
+set2.update(set3)
+print(set2)  #{'kiwi', 2, 1, 'cherry', 'apple', 'banana'}
+
+#add any iterable using update() method
+setA = {"apple", "banana", "cherry"}
+setB = ["kiwi",1,2]
+setA.update(setB)#'kiwi', 2, 1, 'cherry', 'apple', 'banana'}
+print(setA)
+
+setc = {"apple", "banana", "cherry"}
+setc.remove("apple")
+print(setc) #{'cherry', 'banana'}
+
+setd = {"apple", "banana", "cherry"}
+setd.discard("apple")
+print(setd) #{'cherry', 'banana'}
+#Note: If the item to remove does not exist, discard() will NOT raise an error.
+
+#%%
+#Remove random item by using pop() method
+thisset = {"apple", "banana", "cherry"}
+x = thisset.pop()
+print(x)
+print(thisset)#{'apple', 'banana'}
+
+# the clear() method empties the set
+thisset1 = {"apple", "banana", "cherry"}
+thisset1.clear()
+print(thisset1) #set()
+
+#del keyword delete set completely
+setd = {"apple", "banana", "cherry"}
+del setd
+print(setd)
+
+#%%
+#loop items
+thisset = {"apple", "banana", "cherry"}
+for x in thisset:
+  print(x) # cherry apple banana one by ones_like
+
+#%%
+#JOIN SETS:
+#To join sets:
+
+#union() & update() method joins all items from both the sets
+
+set1 = {"a", "b", "c"}
+set2 = {1, 2, 3}
+set3 = {"John", "Elena"}
+set4 = {"apple", "bananas", "cherry"}
+set5= {"a", "c", "bananas", "john"}
+
+myset = set1.union(set2, set3, set4 )
+print(myset) #{'John', 1, 2, 'c', 3, 'Elena', 'bananas', 'b', 'a', 'john'}
+# donn't allows duplicate records
+
+set1.update(set2, set3, set4 ) #its update method no need to store in varible otherwise shows o/p none
+print(set1) #{'John', 1, 2, 'c', 3, 'Elena', 'bananas', 'b', 'a', 'john'} , update() changes the original set does not return new set
+
+# '|' this operator use instead of join,allows u to join set with set only not with other datatypes
+myset1 = set1 | set2 | set3 | set4
+print(myset1) #{'John', 1, 2, 'c', 3, 'Elena', 'bananas', 'b', 'a', 'john'}
+
+#union() method allows u to join set with tuple and other datatypes
+
+set5 = ("kiwi","melon",1,9)
+myset3 =set2.union(set5)
+print(myset3)  #{1, 2, 3, 'kiwi', 'melon', 9}
+
+#%%
+#INTERSECTION(): METHOD RETURNS THE NEW SET THAT ONLY CONTAINS THE ITEMS THAT ARE PRESENT IN BOTH SETS
+
+set1 = {"a", "b", "c"}
+set2 = {1, 2, 3}
+set3 = {"John", "Elena"}
+set4 = {"apple", "bananas", "cherry"}
+set5= {"a", "c", "bananas", "john"}
+
+myset4 = set1.intersection(set1,set2,set3,set4)
+print(myset4)  # it works for only two sets o/p: set()
+
+myset5 = set1.intersection(set5)
+print(myset5)  #{'c', 'a'}
+
+myset6 = set1 & set5
+print(myset5) #{'c', 'a'} , allows u to join sets with set not with other datatype
+
+set4.intersection_update(set5)
+print(set4) #{'bananas'}
+
+#DIFFERENCE BETWEEN JOIN AND UPDATE:
+#✅ update() modifies the original collection, while join() creates and returns a new string.
+
+#%%
+set1 = {"apple", 1,  "banana", 0, "cherry"}
+set2 = {False, "google", 1, "apple", 2, True}
+set3 = set1.intersection(set2)
+print(set3) #{False, 1, 'apple'} ,The values True and 1 are considered the same value. The same goes for False and 0.
+
+#%%
+#DIFFERENCE(): RETURN A NEW SET THAT WILL CONTAINS ONLY THE ITEMS FROM THE FIRST SET THAT ARE NOT PRESENT IN SECOND SET
+set1 = {"apple", "banana", "cherry"}
+set2 = {"google", "microsoft", "apple"}
+set3 = set1.difference(set2) #{'cherry', 'banana'}, ONLY Different items from set 1 will be output
+print(set3)
+
+# also we can use - to join two sets
+
+set4 = set2 - set1 # any operators allows us to join set with sets not with other data types
+print(set4)  #{'microsoft', 'google'} used set2 first so different values from set2 gets
+
+#Difference_update(): it will change the original set instead of returning new set
+set1.difference_update(set2)
+print(set1) #{'cherry', 'banana'}
+
+#%%
+#SYMMETRIC_DIFFERENCES(): KEEPS only the elements that are not present in BOTH SETS
+
+set1 = {"apple", "banana", "cherry"}
+set2 = {"google", "microsoft", "apple"}
+set3 = set1.symmetric_difference(set2)
+print(set3) #{'google', 'cherry', 'banana', 'microsoft'}
+
+set4 = set1 ^ set2 #operstor allows u to join two sets not set with any datatypes
+print(set4)  #{'google', 'cherry', 'banana', 'microsoft'}
+
+set1.symmetric_difference_update(set2)
+print(set1) #{'google', 'cherry', 'banana', 'microsoft'}
+
+#%%
+#PYTHON FROZENSET:frozenset is an immutable version of a set(mutable)
+x = frozenset({"apple", "banana", "cherry"})
+print(x) #frozenset({'cherry', 'apple', 'banana'})
+print(type(x)) #<class 'frozenset'>
+
+s = {1, 2, 3}
+s.add(4)       # allowed
+print(s)       # {1, 2, 3, 4}
+
+fs = frozenset({1, 2, 3})
+fs.add(4)     # ❌ ERROR – cannot add
+print(fs)
+#frozenset = a set that cannot be changed after creation.
+#Normal set (mutable → can change):
+#Frozenset (immutable → cannot change):
+
+#some methods : copy(),diffeence(),intersectin(),isdisjoint(),issubset(),symmetric_difference(),union()
+#%%
+#PYTHON DICTIONARY: it used to store data values in key:value pairs
+#Dictionary items are ordered, changeable, and do not allow duplicates.
+thisdict = {
+   "brand" : "ford",
+   "model" : "car",
+   "color" : "red"
+}
+print(thisdict)  #{'brand': 'ford', 'model': 'car', 'color': 'red'}
+
+# print brand value of dictionary
+print(thisdict["brand"])#ford
+print(thisdict["color"]) #red
+print(thisdict["model"]) #car
+
+#As of Python version 3.7, dictionaries are ordered. In Python 3.6 and earlier, dictionaries are unordered.
+#But still, you cannot get items by index
+#ORDERED: python remembers the sequence of items
+#UNORDERED: Python does not remember sequence
+#but dictionaries never support index access
+#DUPLICATES NOT ALLOWD: dict can not have two items with the same key
+#%%
+dict = {
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964,
+  "year": 2020 # Duplicate values overwrite existing value
+}
+print(dict) #{'brand': 'Ford', 'model': 'Mustang', 'year': 2020}
+print(len(dict)) #3 duplicates overwrite so considers 3 values as two keys are same
+print(type(dict))  #<class 'dict'>
+
+#DICT ITEMS - DATA TYPES : STR,INT,BOOL AND LIST DATA TYPES
+dict1= {
+  "brand": "Ford",
+  "electric": False,
+  "year": 1964,
+  "colors": ["red", "white", "blue"]
+}
+print(dict1) #{'brand': 'Ford', 'electric': False, 'year': 1964, 'colors': ['red', 'white', 'blue']}
+'''
+#THE dict() constructor
+thisdict = dict(name = "John", age = 36, country = "Norway")
+print(thisdict) #{'name': 'John', 'age': 36, 'country': 'Norway'}'''
+
+# %%
+#PYTHON IF STATEMENT
+a = 33
+b = 200
+if a < b:
+    print("a is less than b")#
+
+#%%
+#checking if a number is positive
+number = 15
+if number > 0:
+  print("number is positive") #number is positive
+
+#%%
+#MULTIPLE STATEMENTS IN IF BLOCK
+age = 30
+if age >= 18:
+    print("you are an adult")
+    print("you can vote")
+    print("you have a full legal rights")
+
+#%%
+#USING VARIABLES IN CONDITIONS
+is_logged_in = True
+if is_logged_in:
+    print("you are logged in") #you are logged in
+#any non empty string "False" is considered as True
+
+#%%
+#elif : keyword is python's way of saying " if the previous conditions were not True , then try this condition
+a = 10
+b = 10
+if a > b:
+    print("a is greater than b")
+elif a == b:
+    print("a is equal to b")
+
+#%%
+#MULTIPLE elif STATEMENTS:You can have as many elif statements as you need. Python will check each condition in order
+# and execute the first one that is true.
+
+score = 70
+if score >= 90:
+    print("Grade :A")
+elif score >= 80:
+    print("Grade :B")
+elif score >= 70:
+    print("Grade :C")
+elif score >= 60:
+    print("Grade :D") #Grade :C
+
+#%%
+# HOW elif WORKS: python evaliuates conditions from top to bottom , as soon as a condition that is true
+# it executes that block and skips all remaining conditions
+
+#IMPORTANT: only the FIRST TRUE condition will be executed. even if multiple conditions are true
+#python stops after executing the first matching block
+age = 25
+
+if age < 13:
+  print("You are a child")
+elif age < 20:
+  print("You are a teenager")
+elif age < 65:
+  print("You are an adult")
+elif age >= 65:
+  print("You are a senior")
+
+#%%
+#ELSE KEYWORD: else keyword catches anything which isn't caught by presseding conditions
+#the else statement is executed when if condition( & any elif conditions) evaluate to False
+
+a = 200
+b = 100
+if a < b:
+    print("a is less than b")
+elif  a == b:
+    print("a is equal to b")
+else :
+    print("a is greater than b")
+
+#%%
+# else without elif, Note: The else statement must come last. You cannot have an elif after an else.
+a = 200
+b = 100
+if a < b:
+    print("a is less than b")
+else:
+    print("a is greater than b")
+
+#%%
+#checking even or odd numbers
+number = 7
+if number % 2 == 0:
+    print("even number")
+else:
+    print("odd number")
+
+#%%
+#Complete if-elif-else chain
+temp = 22
+if temp >30:
+    print("It's hot outside")
+elif temp >20:
+    print("it's warm outside")
+elif temp >10:
+    print("it's cold outside")
+else:
+    print("it's bad outside")
+
+#%%
+#else as Fallback: this makes it useful for error handling,validation and providing default values
+username = "Vedanti"
+if len(username) > 0 :
+    print("username is greater than 0")
+else:
+    print("Error : Username cannot be empty")
+
+#%%
+#PYTHON SHORTHAND IF: if u have only one statement to execute, u can put it on same line as if statement
+#one line if statement
+a = 5
+b = 2
+if a > b: print("a is greater than b")
+
+#%%
+#CONDITIONAL EXPRESSION/ TERNARY OPERATOR (ONE-LINE IF/ELSE that prints value)
+a = 2
+b = 330
+print("A") if a > b else print("B")
+
+#%%
+#The AND operator: both conditions must be true for the entire expressions to be True
+a = 200
+b = 330
+c = 500
+if c > a and c > b :
+    print("both conditions are true")
+
+#%%
+#The OR Operator: At least one condition must be true for the entire expression to be true.
+a = 200
+b = 330
+c = 500
+if c > a or c < b:
+    print("At least one condition is True")
+
+#%%
+#THE NOT OPERATOR: used to reverse the result of the conditional statement.
+A = 30
+B = 200
+if not A > B :
+    print("A is NOT greater than B")
+
+#%%
+#USER AUTHENTICATION CHECK:
+username = "Vedanti"
+password = "Vedashree"
+is_verified =  True
+
+if username and password and is_verified:
+    print("Login successful")
+else:
+    print("Login failed")
+
+#%%
+#python nested if: you can have if statements inside if statements. this is called nested if statements
+x = 41
+if x > 10:
+    print("x is above ten")
+    if x > 20:
+        print("x is above twenty")
+    else:
+        print("x is not above 20")
+# o/p:x is above ten,x is above twenty one by one
+
+#%%
+#How NESTED IF WORKS: each level of nesting creates a deeper level of decision-making.
+#The code evaluates from the outermost condition inward (in below change age and get diff. o/p)
+
+age = 24 # 10, 18
+has_license = True
+
+if age >=18:
+    if has_license:
+      print("you can drive")
+    else:
+      print("you need license")
+else:
+    print("you are too young to drive")
+
+#%%
+#LOGIN VALIDATION WITH NESTED CHECKS(it runs outer staement first and then inner )
+username = "Vedanti"
+password = "Vedashree"
+is_active = True
+
+if username:
+    if password:
+        if is_active:
+            print("login successful")
+        else:
+            print("Accpount is not active")
+    else:
+        print("password required")
+else:
+    print("username required")
+
+#%%
+#python pass statement:if statement can not be empty ,but you for some reason have an if statement with no content
+# put in the pass(Do Nothing) statement to avoid getting an error
+a = 33
+b = 80
+if b > a:
+    pass # having an empty if statement like this, would raise an error without the pass statement
+
+# Why use PASS statement: if u r creating code structure but haven't implemented logic yet,
+#2.use as a placeholder for future code during development
+#3.when statement is required syntactically but no action is needed
+
+#DIFFERENCE BETWEEN PASS and COMMENTS:
+# A comment is ignored by python, but pass is an actual statement that gets executed.
+# you need pass where python expects a statement not just a comment
+
+#%%
+score = 85
+if score > 90: # When run this two lines,This will raise an error
+  pass # This is excellent this will not raise any error
+print("score processed") #o/o: score processed (not showing indentation error)
+
+#%% python has two while and for primitive commands/main loop commands),
+#WHILE LOOPS:with while loop we can execute a set of statements as long as a condition is true
+
+i = 1
+while i < 10:
+    print(i) # o/p : 1...9  one by one
+    i = i + 1 # remember to increment i or else loop will continue forever( i += 1)
+
+#%%
+# THE BREAK STATEMENT: we can stop the loop even if the while condition IS True
+i = 1
+while i < 7:
+    print(i)
+    if i == 5:
+        break  # o/p : 1...5 one by one
+    i += 1 #The loop prints numbers from 1 to 5, but it stops at 5 because break stops the loop immediately.
+#%%
+#THE CONTINUE STATEMENT: with the continue statement we can stop the current iteration , and continue with rest
+i = 0
+while i < 6:
+  i += 1      # when we use while need to increment before starting if statement
+  if i == 3:
+    continue
+  print(i) # o/p: 1 2 4 5 7 one by one(3 skips as i==3 and then continue)
+
+'''
+i = 2
+i += 1 → i becomes 3
+Is i == 3? → YES
+continue happens
+👉 Skip the print(i)
+👉 Don’t print 3
+👉 Go to next iteration
+(No output here)'''
+
+#%%
+#THE ELSE STATEMENT: with the else statement we can run a block of code once when the condition is False or no longer True
+
+i = 1
+while i < 10:
+    print(i)
+    i += 1 # at 9th output 10<10 becomes false
+else:
+    print("i is no longer less than 6") #1..9 one by one , at 10th place  i is no longer less than 9
+
+#%%
+# for loop BREAK
+
+fruits = ["apple", "banana", "cherry"]
+for x in fruits:
+   print(x)
+   if x == "banana": # break comes after the print
+       break       # apple banana will be o/p break at banana stops looping
+
+#%%
+fruits = ["apple", "banana", "cherry"]
+for x in fruits:
+  if x == "banana":
+    break
+  print(x) # o/p:apple break comes before the print
+
+#%%
+fruits = ["apple", "banana", "cherry"]
+for x in fruits:
+    if x == "banana":
+        continue
+    print(x) # apple cherry (skipped banana and continue loop)
+
+#%%
+#THE range() Function
+for x in range(10):
+    print(x) # 0..9 one by one
+
+#it is possible to specify the starting value by adding a parameter:range(2,10)
+for x in range(2,10):
+    print(x) #2..9 not including 10 bcz starts from 0
+
+#increment the sequence by 3(default is 1)
+for x in range(2,10,3):
+    print(x) # 2 5 8
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
