@@ -1505,6 +1505,760 @@ for x in range(2,10,3):
     print(x) # 2 5 8
 
 
+#%%
+#MATCH STATEMENT: used to perform different actions based on different condition,instead of writing many if.
+#else statements, you can use the match statement,The match statement selects one of many blocks to be executed
+#SYNTAX:
+match expression:
+    case x:
+        code block
+    case y:
+        code block
+    code z:
+        code block
+
+#%%
+#If-else = use for conditions(ideal:complex logic,many fixed options: looks messy, introduced:always existed
+#Match = use for fixed choices(check:exact pattern/values,not ideal:complex logic,introduced:python3.10,clean readable)
+
+day = 4
+match day:
+    case 1:
+        print("Monday")
+    case 2:
+        print("Tuesday")
+    case 3:
+        print("Wednesday")
+    case 4:
+        print("Thursday")
+    case 5:
+        print("Friday")
+    case 6:
+        print("Saturday")
+    case 7:
+        print("Sunday")  #o/p :Thursday
+#%%
+#DEFAULT VALUE: USE _ character as the last case value if you want a code block to execute ehen thjere are not other matches
+
+day = 4
+match day:
+    case 6:
+        print("Sunday")
+    case 7:
+        print("Monday")
+    case _:
+        print("Looking forward to the weekends") #o/p:Looking forward to the weekends
+
+#%%
+#COMBINE VALUES: use the PIPE | character as an OR operator in the case evaluation to check more than one value match in one case:
+day = 4
+match day:
+    case 1 | 2 | 3 | 4 | 5 :
+        print("Today is weekday")
+    case 6 | 7:
+        print("Today is weekend") #o/p: Today is weekday
+
+#%%
+#if statements as a guards: we can add if statements in the case evaluation as an extra condition check:
+
+month = 5
+day = 4
+match day:
+    case 1 | 2| 3| 4| 5 if month ==4:
+        print(" A weekday in April")
+    case 1 | 2| 3| 4| 5 if month ==5:
+        print(" A weekday in May")
+    case _:                           #space needs case _
+        print("no match") # a weekday in may
+
+#%%
+#Else in for loop using range function
+#print all numbers from 0 to 4 , and print a message when the loops has ended
+for x in range(5):
+    print(x)
+else:
+    print("finally finished")
+
+#%%
+# The else block will not be executed if the loop is stopped by a break statement
+for x in range(5):
+    if x==3:
+        break
+    print(x)
+else:
+    print("finally finished") #o/p: 0 1 2 one by one
+
+# %%
+#PYTHON ARRAYS: python does not have built in support for arrays,but python list can be used instead
+#Note; this page shows you how to use LISTS as ARRAYS, however, to work with arrays in python you will have
+#to import library like NumPy library
+#create an array containing car names
+
+cars = ["ford","volvo","BMW"] #it looks just like LIst and LL methods are same as list
+x = cars[0] # 'ford' , access the elements of an Array
+print(x)
+
+cars[0] = 'toyoto'
+print(cars[0]) #modify the value of the first array item
+
+x =len(cars)
+print(x) #3
+
+for x in cars:
+    print(x) #looping array element, toyoto volvo BMW
+
+cars.append("Honda")
+print(cars) #to add an element to the cars ['toyoto', 'volvo', 'BMW', 'Honda']
+
+cars.pop(1) # remove an element from the array
+print(cars) #['toyoto', 'BMW', 'Honda']
+
+cars.remove("Ford") #remove element from array without using indexing
+print(cars) #If a list has the same value multiple times,remove() will delete only the first one, not all.
+
+'''
+| Feature                     | **List**            | **Array**          |
+| --------------------------- | ------------------- | ------------------ |
+| Stores different data types | ✅ Yes               | ❌ No               |
+| More common in Python       | ✅ Yes               | ❌ Less common      |
+| Faster for numeric work     | ❌ No                | ✅ Yes              |
+| Memory usage                | High                | Low                |
+| Best use case               | General programming | Math, data science |
+
+Syntax;
+
+Array (NumPy):
+import numpy as np
+arr = np.array([10, 20, 30])
+print(arr)
+
+my_list = [10, 20, 30]
+'''
+
+#%%
+'''ITERATOR :🧠 So in super simple words:Iterator is a step-by-step value picker
+An iterator =
+👉 A special object that gives one value at a time
+👉 It has two hidden functions inside it:
+__iter__() = makes the iterator
+__next__() = gives next value
+
+difference between iterator and iterable
+✔ Iterable stores the items
+❌ Iterable does not give items one by one by itself
+
+Iterable:“A collection that can give you an iterator.”
+Iterator:“An object that gives one item at a time using next().”
+
+🔍 Super Easy Real-Life Example
+📦 Iterable = A box with 5 chocolates,You open the box, all chocolates are inside.
+Iterator = Your hand picking chocolates,You take out one, next, next...'''
+
+numbers = [10 , 20 , 30]
+iterator = iter(numbers)# __iter__() runs in background, it creates or returns iterator objects
+print(next(iterator)) #__next__() gives 10, gives next value each time u called it
+print(next(iterator)) #20
+print(next(iterator)) #30
+
+#%%
+#even strings are iterable objects, containing a sequence of charecter
+
+mystr = "banana"
+myit = iter(mystr)
+print(next(myit))
+print(next(myit))
+print(next(myit))
+print(next(myit))
+print(next(myit))
+print(next(myit))  #0/p: b a n a n a
+print(next(myit)) #want to again print but there are not any extra character remaining so shows error:StopIteration
+
+''' You don’t write StopIteration yourself normally — Python raises it automatically.
+But if you want to handle it safely, you must use try–except.'''
+#%%
+mystr = "banana"
+myitr = iter(mystr) #Think of it as a finger pointing at the first letter.
+
+while True: #“Keep doing this forever, unless I stop you.”
+    try:#Inside the loop: try–except ,tries to print next letter first time b ,second time a n...a
+        print(next(myit)) #after printing all 6 items nothing is left so raise error
+    except StopIteration: #This catches the error and stops the loop safely.
+        print("No more character left ") # o/p :No more character left
+        break #Then break stops the infinite loop.
+
+#%%
+#looping through an iterator:
+mytuple = ("apple", "banana", "cherry")
+for x in mytuple:
+    print(x) #o/p: apple banana cherry
+
+#iterate the character of str
+str ="banana"
+for x in str:
+    print(x) # b a n a n a
+
+#%%
+#Module: it's a simple file that contains python code, it can have functions, variables, classes , loops, logic, and u
+#can reuse this code in another python file using import
+
+#imagine you write a file named math_tools.py
+def add(a,b):
+    return a+b
+#this is called a module
+#now in another python file:
+#%%
+import math_tools
+print(math_tools.add(28,20)) # o/p: 48
+#USEFUL:your module's code is reused,write once use anywhere,keep code organised, easy to maintain:fix bug in one module
+
+#%%
+#Re-naming a module: You can create an alias when you import a module , by using as keyword
+import math_tools as mx
+
+print(mx.add(20,50))
+
+
+#BUILT-IN-MODULE:import
+#The **`platform`** module in Python is a **built-in module** that gives information about the **computer system**,
+# **operating system**, **Python version**, and **hardware details**.
+#It is commonly used when you want your program to know **where it is running**.
+# 🧩 **Python `platform` Module (Built-in) — Easy Explanation**
+'''Think of the **platform module** as a tool that tells Python:“Which system am I running on?”
+It helps you get info like:
+* Windows / Linux / macOS
+* Python version
+* Processor / architecture (32-bit or 64-bit)
+* System details
+
+# 📌 **Why is it useful?** You use this module when:
+* You want OS-specific behavior
+  Example: Do one thing on Windows and another on Linux.
+* Debugging system issues
+* Creating setup scripts
+* Checking compatibility of Python packages
+# 🔍 **Common Functions of `platform` Module (with examples)**'''
+
+#%%
+### ✔ 1. **platform.system()**: Returns the operating system name.
+import platform
+print(platform.system()) # o/p:Windows
+
+#%%
+### ✔ 2. **platform.release()** :Gives the OS version.
+print(platform.release()) #11
+
+#%%
+# ✔ 3. **platform.version()** :More detailed OS version info.
+print(platform.version()) #10.0.22631
+
+#%%
+### ✔ 4. **platform.machine()**: Returns hardware type (processor architecture).
+print(platform.machine()) #AMD64
+
+#%%
+### ✔ 5. **platform.python_version()** :Returns Python version as a string.
+print(platform.python_version()) #3.13.5
+
+#%%
+## ✔ 6. **platform.platform()**: Returns a combined summary string.
+print(platform.platform()) #Windows-11-10.0.22631-SP0
+
+# 🧠 **One-line definition**:platform` module helps Python identify the system and environment it is running on.**
+
+#%%
+#using dir() function:There is a built-in function to list all the function names (or variable names) in a module
+import platform
+print(dir(platform)) #['AndroidVer', 'IOSVersionInfo', '_Processor', '_WIN32_CLIENT_RELEASES', '_WIN32_SERVER_RELEASES'
+# , '__builtins__', '__cached__', '__copyright__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__spec__', '__version__', '_comparable_version', '_default_architecture', '_follow_symlinks', '_get_machine_win32', '_java_getprop', '_mac_ver_xml', '_node', '_norm_version', '_os_release_cache', '_os_release_candidates', '_parse_os_release', '_platform', '_platform_cache', '_sys_version', '_sys_version_cache', '_syscmd_file', '_syscmd_ver', '_uname_cache', '_unknown_as_blank', '_ver_stages', '_win32_ver', '_wmi', '_wmi_query', 'android_ver', 'architecture', 'collections', 'freedesktop_os_release', 'functools', 'ios_ver', 'itertools', 'java_ver', 'libc_ver', 'mac_ver', 'machine', 'node', 'os', 'platform', 'processor', 'python_branch', 'python_build', 'python_compiler', 'python_implementation', 'python_revision', 'python_version', 'python_version_tuple', 're', 'release', 'sys', 'system', 'system_alias', 'uname', 'uname_result', 'version', 'win32_edition', 'win32_is_iot', 'win32_ver']
+
+#import PART FROM MODULE:we can import only parts from module by using 'from' keyword
+# the module named mymodule has one function and one dict
+def greeting(name):
+  print("Hello, " + name)
+
+person1 = {
+  "name": "John",
+  "age": 36,
+  "country": "Norway"
+}
+
+#import only the person1 dict from the module
+from mymodule import person1
+print(person1["age"])
+
+#Note: When importing using the from keyword, do not use the module name when referring to elements in the module.
+# Example: person1["age"], not mymodule.person1["age"]
+
+#%%
+#python dates: a date in python is not a data type of it's own,but we can import moduledatetime to work with dates
+import datetime #The date contains year, month, day, hour, minute, second, and microsecond.
+print(datetime.datetime.now()) #2025-12-07 13:09:51.408648
+print(datetime.datetime.today()) #2025-12-07 13:09:51.408648
+print(datetime.datetime.today().date()) #2025-12-07
+print(datetime.datetime.today().time()) #13:23:11.345341
+
+#%%
+#return the year and name of weekday:
+import datetime
+x = datetime.datetime.now()
+print(x.year) #2025
+print(x.month)#12
+print(x.day)#7
+print(x.hour)#13
+print(x.minute)#28
+print(x.second)#42
+print(x.microsecond)#464553
+print(x.strftime("%A"))#Sunday
+#strftime() = “format this date in the style I want”
+#👉 "%A" = “give me the weekday name”
+#starftime() : used with a date or time object(like datetime.now()) to format date and time in readable str
+#think of it like converting a date into a specific text format
+
+#%%
+import datetime
+x = datetime.datetime(2024, 7, 9)
+print(x.strftime("%A"))#Tuesday (strftime("%A") always prints the day name of the date stored in x.)
+print(x.strftime("%a")) #Tue
+print(x.strftime("%B")) #july (month name full version)
+print(x.strftime("%b")) #jul (month name short version)
+print(x.strftime("%w")) #2 (sunday=0,mon=1,tue=3...)
+print(x.strftime("%d")) #09 (day of month)
+print(x.strftime("%m")) #07 (month as number)
+print(x.strftime("%y")) #24 (year short version eithout century)
+print(x.strftime("%Y")) #2024 (year full version)
+
+#%%
+#python math FUNCTIONS: python has set of built in math functions,including an extensive module,that allows you to perform
+# mathematical tasks on numbers: min() ,max() functions used to find the lowest or highest value in iterable
+x = min(55,28,1)
+y = max(55,28,1)
+print(x)#:1
+print(y)#:55
+
+#the abs() returns the absolute value of  the specified number
+z = abs(-4.56)
+print(z) #4.56
+
+#the pow(x,y) functions returns the value of x to the power of y(x^y)
+a = pow(2,3)
+print(a)  # 8(2*2*2)
+
+#%%
+#MATH MODULES:
+import math
+print(math.sqrt(64)) #o/p:8.0 (sqrt:square root)
+print(math.ceil(1.4)) # 2 :The math.ceil() method rounds a number upwards(ceil:cealing)to its nearest integer
+print(math.floor(1.4)) # 1 :math.floor() method rounds a number downwards(floor) to its nearest intege
+print(math.pi) #3.141592653589793
+
+#CONVERT FROM JSON TO PYTHON:json.loads(x)
+#parse JSON:syntax for storing and exchanging data, python has built in package called JSON,which helps to work DATA
+import json
+x =  '{ "name":"John", "age":30, "city":"New York"}'#(json:contains key value paired data)
+y = json.loads(x) #parse x :read data + understand its structure + convert it into a usable format in python
+print(y) #{'name': 'John', 'age': 30, 'city': 'New York'}
+print(type(y))  #<class 'dict'>
+print(y["city"]) #New York
+
+#%%
+#CONVERT FROM PYTHON TO JSON: json.dumps()
+import json
+x = { "name":"John", "age":30, "city":"New York"}
+y = json.dumps(x) #convert into json
+print(y) #{"name": "John", "age": 30, "city": "New York"}
+
+#%%
+import json
+
+print(json.dumps({"name": "John", "age": 30})) # {"name": "John", "age": 30} convert python object json str
+print(json.dumps(["apple", "bananas"])) #["apple", "bananas"] :array
+print(json.dumps(("apple", "bananas"))) #["apple", "bananas"] :array
+print(json.dumps("hello")) # "hello"
+print(json.dumps(42)) # 42
+print(json.dumps(31.76)) #31,76
+print(json.dumps(True)) #true
+print(json.dumps(False)) #false
+print(json.dumps(None)) #null
+
+#%%
+#convert the python object containing all the legal data types:
+import json
+
+x = {
+  "name": "John",
+  "age": 30,
+  "married": True,
+  "divorced": False,
+  "children": ("Ann","Billy"),
+  "pets": None,
+  "cars": [
+    {"model": "BMW 230", "mpg": 27.5},
+    {"model": "Ford Edge", "mpg": 24.1}
+  ]
+}
+print(json.dumps(x))  #{"name": "John", "age": 30, "married": true, "divorced": false, "children": ["Ann", "Billy"],
+# "pets": null, "cars": [{"model": "BMW 230", "mpg": 27.5}, {"model": "Ford Edge", "mpg": 24.1}]}
+
+#%%
+#FORMAT THE RESULT: above prints  a json string,but it is not easy to read,with no indentations and line breaks
+#json.dumps() method has parameters to make it easier to read the result
+# use indent parameter to define the numbers of indents:
+import json
+
+x = {
+  "name": "John",
+  "age": 30,
+  "married": True,
+  "divorced": False,
+  "children": ("Ann","Billy"),
+  "pets": None,
+  "cars": [
+    {"model": "BMW 230", "mpg": 27.5},
+    {"model": "Ford Edge", "mpg": 24.1}
+  ]
+}
+print(json.dumps(x, indent =4))
+
+'''
+o/p:
+{
+    "name": "John",
+    "age": 30,
+    "married": true,
+    "divorced": false,
+    "children": [
+        "Ann",
+        "Billy"
+    ],
+    "pets": null,
+    "cars": [
+        {
+            "model": "BMW 230",
+            "mpg": 27.5
+        },
+        {
+            "model": "Ford Edge",
+            "mpg": 24.1
+        }
+    ]
+}
+'''
+
+#%%
+#USE SEPARATORS parameter to change the default separator:You can also define the separators, default value is
+# (", ", ": "), which means using a comma and a space to separate each object, and a colon and a space to separate
+# keys from values
+
+import json
+
+x = {
+  "name": "John",
+  "age": 30,
+  "married": True,
+  "divorced": False,
+  "children": ("Ann","Billy"),
+  "pets": None,
+  "cars": [
+    {"model": "BMW 230", "mpg": 27.5},
+    {"model": "Ford Edge", "mpg": 24.1}
+  ]
+}
+print(json.dumps(x, indent =4 ,separators = (". ", " = ")))
+
+'''
+o/p"
+{
+    "name" = "John". 
+    "age" = 30. 
+    "married" = true. 
+    "divorced" = false. 
+    "children" = [
+        "Ann". 
+        "Billy"
+    ]. 
+    "pets" = null. 
+    "cars" = [
+        {
+            "model" = "BMW 230". 
+            "mpg" = 27.5
+        }. 
+        {
+            "model" = "Ford Edge". 
+            "mpg" = 24.1
+        }
+    ]
+}
+'''
+#%%
+# USE the sort_keys parameter to specify if the result should be sorted or not
+import json
+
+x = {
+  "name": "John",
+  "age": 30,
+  "married": True,
+  "divorced": False,
+  "children": ("Ann","Billy"),
+  "pets": None,
+  "cars": [
+    {"model": "BMW 230", "mpg": 27.5},
+    {"model": "Ford Edge", "mpg": 24.1}
+  ]
+}
+
+print(json.dumps(x, indent=4, sort_keys=True))
+
+'''
+O/P:
+{
+    "age": 30,
+    "cars": [
+        {
+            "model": "BMW 230",
+            "mpg": 27.5
+        },
+        {
+            "model": "Ford Edge",
+            "mpg": 24.1
+        }
+    ],
+    "children": [
+        "Ann",
+        "Billy"
+    ],
+    "divorced": false,
+    "married": true,
+    "name": "John",
+    "pets": null
+}
+ '''
+
+'''
+🔥 Super-short difference
+indent=4 → Pretty JSON
+separators → Custom symbols replacing , and :
+sort_keys=True → Alphabetical order
+
+✅ 1. json.dumps(x, indent=4)
+✔ Makes JSON pretty / readable by adding 4-space indentation.
+✔ Only formatting, nothing else changes.
+
+✅ 2. json.dumps(x, indent=4, separators=(". ", " = "))
+✔ Changes separators used between items.
+Instead of default , and :, it uses
+". " between items
+" = " between key & value
+✔ Output looks custom formatted (not normal JSON).
+
+✅ 3. json.dumps(x, indent=4, sort_keys=True)
+✔ Sorts keys in alphabetical order before converting to JSON.
+✔ Useful for clean, organized output.
+'''
+
+
+#Regex:
+# Regex (Regular Expression) is like a **smart search tool** that can find **specific patterns** inside text.
+'''You can find:
+✔ words
+✔ numbers
+✔ emails
+✔ phone numbers
+✔ dates
+✔ any custom pattern
+
+Think of regex as **searching with rules**, not just exact words.'''
+
+#%%
+# 🟢 **Example 1: Find all words**
+import re
+text = "Python is super easy"
+result = re.findall(r"[A-Za-z]+", text)
+print(result) #['Python', 'is', 'super', 'easy']
+# `[A-Za-z]+` → match letters (words)
+
+# 🟢 **Example 2: Find all numbers**
+import re
+text = "I bought 2 apples and 5 bananas"
+result = re.findall(r"\d+", text)
+print(result) #['2', '5']
+# `\d+` → match digits
+
+# 🟢 **Example 3: Find an email**
+import re
+text = "Contact me at rupali123@gmail.com"
+result = re.findall(r"[a-zA-Z0-9._]+@[a-zA-Z]+\.[a-zA-Z]+", text)
+print(result) #['rupali123@gmail.com']
+#Pattern checks email format.
+
+# 🟢 **Example 4: Find a phone number (10-digit)**
+import re
+text = "My number is 9876543210"
+result = re.findall(r"\b\d{10}\b", text)
+print(result) #['9876543210']
+# `\d{10}` → exactly 10 digits
+# `\b` → word boundary (complete number)
+
+# 🟢 **Example 5: Find a date (dd/mm/yyyy)**
+import re
+text = "Today's date is 07/12/2025"
+result = re.findall(r"\d{2}/\d{2}/\d{4}", text)
+print(result) #['07/12/2025']
+# Pattern matches **2 digits / 2 digits / 4 digits**
+
+# 🟢 **Example 6: Find any pattern (e.g., words starting with P)**
+import re
+text = "Python is Powerful and Popular"
+result = re.findall(r"\bP\w+", text)
+print(result) #['Python', 'Powerful', 'Popular']
+# `P\w+` → words that start with **P**
+#Return an empty list if no match was found:
+
+#%%
+#Search the string to see if it starts with "The" and ends with "Spain":
+import re
+txt = "The rain in spain"
+x= re.search("^The.*spain$", txt)
+if x:
+  print("YES! We have a match!")
+else:
+  print("No match") #YES! We have a match!
+'''
+^The.*spain$
+✔ Starts with The : ^
+✔ Middle part is rain in : .* 
+✔ Ends with Spain : $
+'''
+
+#%%
+#findall() : returns a LIST containing all matches
+import re
+txt = "The rain in spain"
+print(re.findall("ai", txt)) #['ai', 'ai']
+print(re.findall("me",txt)) #[] empty list will be output
+
+#%%
+#search() : searches str for matches, if there are more match  ony first occurence will be returned
+import re
+txt = "The rain in spain"
+x = re.search("\s", txt)
+y = re.search("\s", txt)#\s : str contains white spaces, \S: does not contain white space charecter
+print(x.start()) # 3 as first space found at 3rd index, if no matches value: NONE
+print(y.start()) #3
+
+#%%
+#split() : returns a list where the str has been split at each match
+#split at each white space character
+import re
+txt = "The rain in spain"
+x = re.split("\s",txt)
+print(x)  #['The', 'rain', 'in', 'spain']
+
+# u can control the number of occurrences by specifying the maxsplit() parameter
+import re
+txt = "The rain in spain"
+x = re.split("\s",txt ,1)
+print(x)  #['The', 'rain in spain']
+import re
+
+#sub()  :replaces the matches with the text of your choice
+#replace every white space character with the number 9
+y =re.sub("\s","9",txt)
+print(y)  #The9rain9in9spain
+
+
+'''
+.span() returns a tuple containing the start-, and end positions of the match.
+.string()returns the string passed into the function
+.group() returns the part of the string where there was a match'''
+#%%
+import re
+
+txt = "The rain in Spain"
+x = re.search(r"\bS\w+", txt) #\bS\w+ → find a word starting with S
+print(x) #.span() → gives start and end positions → (12, 17)
+#print(x.span()) #(12, 17)
+
+#%%
+import re
+
+txt = "The rain in Spain"
+x = re.search(r"\bS\w+", txt)
+print(x.string) #The rain in Spain
+
+#%%
+import re
+
+txt = "The rain in Spain"
+x = re.search(r"\bS\w+", txt)
+print(x.group()) #Spain(The regular expression looks for any words that starts with an upper case "S":)
+
+#PIP : PIP Installs Packages OR Preferred installer program
+#PIP is a tool in Python used to install, upgrade, and manage external libraries (packages) that are not
+#included in Python by default. OR PIP is a package manager for Python modules
+'''
+👉 PIP = Python's App Store Installer (here we are considering python like a mobile phone)
+Using pip, you can install extra packages like:
+numpy (for maths) #pip install numpy
+pandas (for data)
+flask (for web apps)
+requests (for APIs)
+PIP LIST: TO LIST ALL PACKAGES IN PYHON
+'''
+
+#difference between module, packages and library
+'''
+Module → A single Python file containing code (e.g., math.py).
+Package → A folder containing multiple modules, plus an __init__.py file.
+Library → A collection of packages and modules that provide specific functionality (e.g., NumPy).
+'''
+
+#TRY EXCEPT:
+'''
+✔ try:(block)
+Try doing something
+➡️ “Try to open the chocolate”
+✔ except:
+If something goes wrong, handle the error
+➡️ “If the wrapper is too tight and tears your hand, handle the problem”
+✔ else:
+Runs only if no error happens
+➡️ “If the chocolate opened successfully, enjoy eating it!”
+✔ finally:
+Runs always, no matter what happens
+➡️ “After everything, throw the wrapper in the dustbin (must be done always).”
+'''
+
+#%%
+try:
+    print(10 / 2)   # Try to run this
+except:
+    print("Something went wrong!")   # If error happens
+else:
+    print("No error, code ran successfully!")  # Runs only if no error
+finally:
+    print("This will run no matter what!")     # Always runs
+
+'''
+O/P:5.0
+    No error, code ran successfully!
+    This will run no matter what!
+'''
+
+#EXAMPLE WITH ERROR
+#%%
+try:
+    result = 10 / 0
+except:
+    print("❌ Error: You cannot divide by zero!")
+else:
+    print("✔ Division successful:", result)
+finally:
+    print("📌 Program ended.")
+'''
+O/P: ❌ Error: You cannot divide by zero!
+    📌 Program ended.
+'''
+
 
 
 
